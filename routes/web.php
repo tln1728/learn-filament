@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('test', function() {
+    $user = App\Models\User::first();
+    dd($user->roles()->toRawSql());
+    dd($user->roles()->get()->toArray());
+});
