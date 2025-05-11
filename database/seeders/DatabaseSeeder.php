@@ -22,6 +22,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
+            HotelSeeder::class,
+            RoomTypeSeeder::class,
+            RoomSeeder::class,
+            // RoomRateSeeder::class,
+            // BookingSeeder::class,
+            // PaymentSeeder::class,
+            // ReviewSeeder::class,
         ]);
     }
 }
