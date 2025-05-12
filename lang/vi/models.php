@@ -14,6 +14,22 @@ return [
         'updated_at'        => 'Ngày cập nhật gần nhất',
     ],
 
+    'hotel' => [
+        'name'         => 'Tên khách sạn',
+        'description'  => 'Mô tả ngắn',
+        'address'      => 'Địa chỉ',
+        'city'         => 'Thành phố',
+        'country'      => 'Quốc gia',
+        'zip_code'     => 'Mã bưu điện',        
+        'phone'        => 'Liên hệ',
+        'email'        => 'Email',
+        'website'      => 'Trang web',
+    ],
+
+    // models.hotel.basic_information
+    // models.hotel.location
+    // models.hotel.contact_information
+
     // 'roomtype' => 'Loại phòng',
 
     // 'room' => 'Phòng',

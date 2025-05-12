@@ -8,6 +8,7 @@ return [
     'confirmed'  => ':Attribute xác nhận không khớp', 
     'same'       => ':Attribute không khớp',
     // 'same'    => 'Trường :attribute phải khớp với trường :other.',
+    'url'        => 'Đường dẫn không hợp lệ',
 
     // Doesn't work ?
     // 'attributes' => [

@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Hotel extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'description',
+        'address',
+        'city',
+        'country',
+        'zip_code',
+        'phone',
+        'email',
+        'website',
+    ];
+
+    public function rommTypes()
+    {
+        return $this->hasMany(RoomType::class);
+    }
 }
