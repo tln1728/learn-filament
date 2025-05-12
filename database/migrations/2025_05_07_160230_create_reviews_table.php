@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('booking_id');
             $table->integer('rating'); // Điểm đánh giá (1-5)
             $table->text('comment')->nullable(); // Bình luận
+            // $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // Trạng thái kiểm duyệt
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('hotel_id')->references('id')->on('hotels')->cascadeOnDelete();
             $table->foreign('booking_id')->references('id')->on('bookings')->cascadeOnDelete();

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('booking_id');
             $table->decimal('amount', 15, 2); // Số tiền
+            // $table->string('currency')->default('USD'); // Đơn vị tiền tệ
+            // $table->string('transaction_id')->nullable(); // Mã giao dịch
             $table->enum('payment_method', ['credit_card', 'cash', 'bank_transfer']);
             $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');

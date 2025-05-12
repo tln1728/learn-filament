@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('city');
             $table->string('country');
             $table->string('zip_code')->nullable(); // Mã bưu điện
-            $table->decimal('rating', 3, 1)->nullable(); // ?
+            $table->string('phone')->nullable(); // Số điện thoại liên hệ
+            $table->string('email')->nullable(); // Email liên hệ
+            $table->string('website')->nullable(); // Website khách sạn
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('room_type_id');
             $table->date('date'); // Ngày áp dụng giá
             $table->decimal('price', 15, 2); // Giá phòng cho ngày đó
+            $table->boolean('is_promotion')->default(false);
             $table->foreign('room_type_id')->references('id')->on('room_types')->cascadeOnDelete();
             $table->timestamps();
         });

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('room_id');
             $table->datetime('check_in'); // Ngày nhận phòng
             $table->datetime('check_out'); // Ngày trả phòng
+            $table->integer('number_of_guests'); // Số lượng khách
+            $table->text('requests')->nullable(); // note
             $table->decimal('total_price', 15, 2);
             $table->enum('status', ['pending', 'confirmed', 'cancelled', 'completed'])->default('pending');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
