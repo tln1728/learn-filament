@@ -5,11 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\HotelResource\Pages;
 use App\Filament\Resources\HotelResource\RelationManagers;
 use App\Models\Hotel;
+use App\Services\LocationService;
 use Filament\Forms;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -58,24 +60,27 @@ class HotelResource extends Resource
                                     ->maxLength(255),
                             ])->columns(4)->columnSpanFull(),
 
-                            Select::make('city')
-                                ->label(__('models.hotel.city'))
-                                ->required()
-                                ->options([
-                                    'Hà Nội',
-                                    'TP Hồ Chí Minh',
-                                    'bla bla',
-                                ])
-                                ->searchable(),
-
                             Select::make('country')
                                 ->label(__('models.hotel.country'))
                                 ->required()
-                                ->options([
-                                    'Hà Nội',
-                                    'TP Hồ Chí Minh',
-                                    'bla bla',
-                                ])
+                                ->options(function () {
+                                    return app(LocationService::class)->getCountries();
+                                })
+                                ->afterStateUpdated(function ($set) {
+                                    $set('city', null); // Reset city khi country thay đổi
+                                })
+                                ->live()
+                                ->searchable(),
+
+                            Select::make('city')
+                                ->label(__('models.hotel.city'))
+                                ->required()
+                                ->disabled(fn ($get) => ! $get('country'))
+                                ->options(function ($get) {
+                                    return $get('country') == 'VN' 
+                                        ? ['Hà Nội', 'TP Hồ chí minh', 'Đà Nẵng'] 
+                                        : [];
+                                })
                                 ->searchable(),
                         ])->columns(2),
                 ])->columnSpan(2),
@@ -86,13 +91,16 @@ class HotelResource extends Resource
                             ->label(__('models.hotel.phone'))
                             ->prefixIcon('heroicon-o-phone')
                             ->tel()
+                            ->required()
                             ->maxLength(255),
 
                         TextInput::make('email')
                             ->label(__('models.hotel.email'))
                             ->prefixIcon('heroicon-o-at-symbol')
                             ->email()
-                            ->unique()
+                            ->unique(ignoreRecord: true)
+                            ->required()
+                            ->regex('/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/')
                             ->maxLength(255),
 
                         TextInput::make('website')
