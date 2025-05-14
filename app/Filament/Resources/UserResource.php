@@ -71,7 +71,6 @@ class UserResource extends Resource
                         TextInput::make('phone')
                             ->label(__('models.user.phone'))
                             ->tel()
-                            ->regex('/^0[0-9]{9,10}$/')
                             ->nullable(),
                     ])->columnSpan(1),
             ])->columns(3);

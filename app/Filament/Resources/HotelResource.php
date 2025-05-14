@@ -70,6 +70,7 @@ class HotelResource extends Resource
                                     $set('city', null); // Reset city khi country thay đổi
                                 })
                                 ->live()
+                                ->optionsLimit(20)
                                 ->searchable(),
 
                             Select::make('city')
@@ -77,8 +78,9 @@ class HotelResource extends Resource
                                 ->required()
                                 ->disabled(fn ($get) => ! $get('country'))
                                 ->options(function ($get) {
-                                    return $get('country') == 'VN' 
-                                        ? ['Hà Nội', 'TP Hồ chí minh', 'Đà Nẵng'] 
+                                    $country = $get('country');
+                                    return $country
+                                        ? app(LocationService::class)->getCities($country)
                                         : [];
                                 })
                                 ->searchable(),
