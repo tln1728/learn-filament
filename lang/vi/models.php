@@ -24,13 +24,23 @@ return [
         'phone'        => 'Liên hệ',
         'email'        => 'Email',
         'website'      => 'Trang web',
+        'created_at'   => 'Ngày thành lập', // ?
+        'updated_at'   => 'Cập nhật gần nhất',
     ],
 
     // models.hotel.basic_information
     // models.hotel.location
     // models.hotel.contact_information
 
-    // 'roomtype' => 'Loại phòng',
+    'roomtype' => [
+        'hotel_id'      => 'Khách sạn',
+        'name'          => 'Tên loại phòng',
+        'description'   => 'Mô tả',
+        'max_occupancy' => 'Sức chứa tối đa',
+        'base_price'    => 'Giá cơ bản',
+        'created_at'    => 'Ngày tạo',
+        'updated_at'    => 'Cập nhật gần nhất',
+    ],
 
     // 'room' => 'Phòng',
 
