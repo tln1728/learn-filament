@@ -18,4 +18,30 @@ class ListRoomTypes extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    public function getTabs(): array
+    {
+        $hotels = Hotel::pluck('name', 'id');
+
+        if ($hotels->isEmpty())
+            return [];
+
+        // $tabs = [
+        //     'Tất cả' => Tab::make(),
+        //     Tab::make()->label('Tất cả'),
+        // ];
+
+        foreach ($hotels as $id => $name) {
+            $tabs[$id] = Tab::make()
+                ->label($name)
+                ->modifyQueryUsing(fn($query) => $query->where('hotel_id', $id));
+        }
+
+        return $tabs;
+    }
+
+    public function getDefaultActiveTab(): string|int|null
+    {
+        return Hotel::select('id')->first()->id;
+    }
 }
