@@ -42,7 +42,14 @@ return [
         'updated_at'    => 'Cập nhật gần nhất',
     ],
 
-    // 'room' => 'Phòng',
+    'room' => [
+        'hotel_id'      => 'Khách sạn',
+        'room_type_id'  => 'Loại phòng',
+        'room_number'   => 'Số phòng',
+        'is_available'  => 'Trạng thái',
+        'created_at'    => 'Ngày tạo',
+        'updated_at'    => 'Cập nhật gần nhất',
+    ],
 
     // 'booking' => 'Đặt phòng',
 
