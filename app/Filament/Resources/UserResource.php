@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
+    protected static ?string $modelLabel = 'Tài khoản';
+    protected static ?string $navigationLabel = 'Quản lý tài khoản';
     protected static ?string $navigationIcon = 'heroicon-o-user-circle';
 
     public static function form(Form $form): Form
@@ -87,6 +89,7 @@ class UserResource extends Resource
                     ->label(__('models.user.name')),
 
                 ImageColumn::make('avatar')
+                    ->placeholder('None')
                     ->label(__('models.user.avatar')),
 
                 TextColumn::make('email')

@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -24,6 +25,7 @@ class RoomResource extends Resource
 {
     protected static ?string $model = Room::class;
     protected static ?string $modelLabel = 'Phòng';
+    protected static ?string $navigationLabel = 'Quản lý phòng';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -82,6 +84,10 @@ class RoomResource extends Resource
                     ->label(__('models.room.room_number'))
                     ->searchable(),
 
+                // (env('APP_DEBUG')) 
+                // ? ToggleColumn::make('is_available')
+                //     ->label(__('models.room.is_available'))
+                // :
                 IconColumn::make('is_available')
                     ->label(__('models.room.is_available'))
                     ->boolean(),
@@ -134,4 +140,15 @@ class RoomResource extends Resource
             'edit' => Pages\EditRoom::route('/{record}/edit'),
         ];
     }
+
+    // Số lượng phòng trống (của tất cả hotel)
+    // public static function getNavigationBadge(): ?string
+    // {
+    //     return static::getModel()::where('is_available', true)->count();
+    // }
+
+    // public static function getNavigationBadgeColor(): string|array|null 
+    // {
+    //     return 'success';
+    // }
 }

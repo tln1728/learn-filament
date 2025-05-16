@@ -23,6 +23,7 @@ class RoomTypeResource extends Resource
 {
     protected static ?string $model = RoomType::class;
     protected static ?string $modelLabel = 'Loại phòng';
+    protected static ?string $navigationLabel = 'Quản lý loại phòng';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
 
     public static function form(Form $form): Form
