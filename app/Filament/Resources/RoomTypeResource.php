@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\RoomTypeResource\Pages;
 use App\Filament\Resources\RoomTypeResource\RelationManagers;
+use App\Filament\Resources\RoomTypeResource\RelationManagers\RoomsRelationManager;
 use App\Models\Hotel;
 use App\Models\RoomType;
 use Filament\Forms;
@@ -120,7 +121,7 @@ class RoomTypeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RoomsRelationManager::class,
         ];
     }
 
