@@ -67,8 +67,8 @@ class RoomTypeResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('hotel.name')
-                    ->label(__('models.roomtype.hotel_id')),
+                // TextColumn::make('hotel.name')
+                //     ->label(__('models.roomtype.hotel_id')),
 
                 TextColumn::make('name')
                     ->label(__('models.roomtype.name'))
@@ -84,6 +84,12 @@ class RoomTypeResource extends Resource
                     ->label(__('models.roomtype.base_price'))
                     ->numeric()
                     ->money('VND')
+                    ->sortable(),
+
+                TextColumn::make('rooms_count')
+                    ->counts('rooms')
+                    ->label(__('models.roomtype.rooms_count'))
+                    ->numeric()
                     ->sortable(),
 
                 TextColumn::make('created_at')

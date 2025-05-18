@@ -40,6 +40,8 @@ return [
         'base_price'    => 'Giá cơ bản',
         'created_at'    => 'Ngày tạo',
         'updated_at'    => 'Cập nhật gần nhất',
+        // Relationships
+        'rooms_count'   => 'Số phòng',
     ],
 
     'room' => [
