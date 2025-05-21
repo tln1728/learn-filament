@@ -27,6 +27,7 @@ class UserResource extends Resource
     protected static ?string $modelLabel = 'Tài khoản';
     protected static ?string $navigationLabel = 'Quản lý tài khoản';
     protected static ?string $navigationIcon = 'heroicon-o-user-circle';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -90,6 +91,7 @@ class UserResource extends Resource
 
                 ImageColumn::make('avatar')
                     ->placeholder('None')
+                    ->circular()
                     ->label(__('models.user.avatar')),
 
                 TextColumn::make('email')

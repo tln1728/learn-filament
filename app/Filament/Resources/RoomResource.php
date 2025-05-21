@@ -27,6 +27,7 @@ class RoomResource extends Resource
     protected static ?string $modelLabel = 'Phòng';
     protected static ?string $navigationLabel = 'Quản lý phòng';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
@@ -39,7 +40,6 @@ class RoomResource extends Resource
                     ->live()
                     ->placeholder('Chọn khách sạn')
                     ->afterStateUpdated(fn($set) => $set('room_type_id', null))
-                    ->preload()
                     ->required(),
 
                 Select::make('room_type_id')

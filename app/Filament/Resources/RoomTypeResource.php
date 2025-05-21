@@ -26,6 +26,7 @@ class RoomTypeResource extends Resource
     protected static ?string $modelLabel = 'Loại phòng';
     protected static ?string $navigationLabel = 'Quản lý loại phòng';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {

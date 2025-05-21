@@ -21,6 +21,7 @@ return [
         'numeric'    => ':Attribute phải lớn hơn :min',
         // 'string'  => 'The :attribute field must be at least :min characters.',
     ],
+    'numeric'   => ':Attribute phải là một số',
     // Doesn't work ?
     // 'attributes' => [
     //     'password' => 'Mật khẩu',
