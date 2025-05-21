@@ -35,7 +35,7 @@ return [
     'roomtype' => [
         'hotel_id'      => 'Khách sạn',
         'name'          => 'Tên loại phòng',
-        'description'   => 'Mô tả',
+        'description'   => 'Mô tả khách sạn',
         'max_occupancy' => 'Sức chứa tối đa',
         'base_price'    => 'Giá cơ bản',
         'created_at'    => 'Ngày tạo',
@@ -49,6 +49,16 @@ return [
         'room_type_id'  => 'Loại phòng',
         'room_number'   => 'Số phòng',
         'is_available'  => 'Trạng thái',
+        'created_at'    => 'Ngày tạo',
+        'updated_at'    => 'Cập nhật gần nhất',
+    ],
+
+    'service' => [
+        'hotel_id'      => 'Khách sạn',
+        'name'          => 'Tên dịch vụ',
+        'description'   => 'Mô tả dịch vụ',
+        'image'         => 'Ảnh',
+        'price'         => 'Phí',
         'created_at'    => 'Ngày tạo',
         'updated_at'    => 'Cập nhật gần nhất',
     ],
