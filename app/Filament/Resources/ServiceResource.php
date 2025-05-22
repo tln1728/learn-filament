@@ -82,7 +82,7 @@ class ServiceResource extends Resource
             ->columns([
                 ImageColumn::make('image')
                     ->label(__('models.service.image'))
-                    ->size(100),
+                    ->size(80),
 
                 TextColumn::make('name')
                     ->label(__('models.service.name'))
@@ -110,6 +110,7 @@ class ServiceResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
