@@ -27,7 +27,7 @@ class UserResource extends Resource
     protected static ?string $modelLabel = 'Tài khoản';
     protected static ?string $navigationLabel = 'Quản lý tài khoản';
     protected static ?string $navigationIcon = 'heroicon-o-user-circle';
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 10;
 
     public static function form(Form $form): Form
     {

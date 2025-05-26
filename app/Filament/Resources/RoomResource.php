@@ -40,6 +40,7 @@ class RoomResource extends Resource
                     ->live()
                     ->placeholder('Chọn khách sạn')
                     ->afterStateUpdated(fn($set) => $set('room_type_id', null))
+                    ->disabledOn('edit')
                     ->required(),
 
                 Select::make('room_type_id')
@@ -54,6 +55,7 @@ class RoomResource extends Resource
                     ->disabled(fn($get) => !$get('hotel_id'))
                     ->placeholder('Chọn loại phòng')
                     ->native(false)
+                    ->disabledOn('edit')
                     ->required(),
 
                 TextInput::make('room_number')
@@ -70,7 +72,7 @@ class RoomResource extends Resource
                         // }
                     )
                     ->required(),
-            ]);
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
