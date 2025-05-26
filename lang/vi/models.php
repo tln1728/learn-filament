@@ -35,7 +35,7 @@ return [
     'roomtype' => [
         'hotel_id'      => 'Khách sạn',
         'name'          => 'Tên loại phòng',
-        'description'   => 'Mô tả khách sạn',
+        'description'   => 'Mô tả loại phòng',
         'max_occupancy' => 'Sức chứa tối đa',
         'base_price'    => 'Giá cơ bản',
         'created_at'    => 'Ngày tạo',
@@ -63,11 +63,19 @@ return [
         'updated_at'    => 'Cập nhật gần nhất',
     ],
 
+    'roomrate' => [
+        'room_type_id'  => 'Loại phòng',
+        'date'          => 'Ngày áp dụng',
+        'price'         => 'Giá',
+        'is_promotion'  => 'Khuyến mãi',
+        'created_at'    => 'Ngày tạo',
+        'updated_at'    => 'Cập nhật gần nhất',
+    ],
+
     // 'booking' => 'Đặt phòng',
 
     // 'payment' => 'Thanh toán',
 
     // 'review' => 'Đánh giá',
 
-    // 'roomrate' => 'rôm rết',
 ];

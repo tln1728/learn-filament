@@ -19,6 +19,7 @@ use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Carbon;
 
 class RoomTypeResource extends Resource
 {
@@ -111,6 +112,60 @@ class RoomTypeResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('generateWeeklyRates')
+                    ->label('Tạo giá hàng tuần')
+                    ->form([
+                        Forms\Components\DatePicker::make('start_date')
+                            ->label('Ngày bắt đầu')
+                            ->required()
+                            ->default(Carbon::today()),
+                        Forms\Components\TextInput::make('duration')
+                            ->label('Số ngày')
+                            ->required()
+                            ->numeric()
+                            ->default(28)
+                            ->minValue(1),
+                        Forms\Components\TextInput::make('weekday_price')
+                            ->label('Giá ngày thường')
+                            ->required()
+                            ->numeric()
+                            ->prefix('VNĐ')
+                            ->minValue(0),
+                        Forms\Components\TextInput::make('weekend_price')
+                            ->label('Giá cuối tuần')
+                            ->required()
+                            ->numeric()
+                            ->prefix('VNĐ')
+                            ->minValue(0),
+                        Forms\Components\Toggle::make('is_promotion')
+                            ->label('Áp dụng khuyến mãi cho cuối tuần')
+                            ->default(false),
+                    ])
+                    ->action(function ($record, array $data) {
+                        $startDate = Carbon::parse($data['start_date']);
+                        $duration = (int) $data['duration'];
+                        $weekdayPrice = (float) $data['weekday_price'];
+                        $weekendPrice = (float) $data['weekend_price'];
+                        $isPromotion = $data['is_promotion'];
+
+                        for ($i = 0; $i < $duration; $i++) {
+                            $currentDate = $startDate->copy()->addDays($i);
+                            $isWeekend = $currentDate->isSaturday() || $currentDate->isSunday();
+                            $price = $isWeekend ? $weekendPrice : $weekdayPrice;
+
+                            $record->roomRates()->updateOrCreate(
+                                ['date' => $currentDate],
+                                [
+                                    'price' => $price,
+                                    'is_promotion' => $isWeekend ? $isPromotion : false,
+                                    'created_at' => now(),
+                                    'updated_at' => now(),
+                                ]
+                            );
+                        }
+                    })
+                    ->color('success'),
+                    // ->iconButton(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
